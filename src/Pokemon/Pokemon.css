@@ -1,0 +1,11 @@
+.pokemonSprites {
+    background: black;
+    margin: 10px;
+    color: white;
+    padding: 5px;
+}
+
+.pokemonCards{
+    display: flex;
+    flex-wrap: wrap;
+}

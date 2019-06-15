@@ -1,0 +1,46 @@
+import React, {Component} from 'react';
+import logo from './logo.svg';
+import './App.css';
+import axios from 'axios'
+
+const baseUrl = 'https://pokeapi.co/api/v2/pokemon'
+
+class App extends Component {
+
+  state={
+    list:[],
+    // filterPokemon:[],
+  }
+
+  componentDidMount(){
+    const pokemon = [];
+    for(let i=252; i<=386; i++){
+      pokemon.push(axios.get(`${baseUrl}/${i}`))
+    }
+    Promise.all(pokemon)
+    .then((response) => {
+        this.setState ({
+          list:response.map((e)=>{
+            console.log(e.data)
+            return e.data
+          }),
+          // filterPokemon:response.map((e)=>{
+          //   return e.data
+          // })
+        })
+      })
+  }
+    render () {
+      // console.log(e)
+      const pokemonList = this.state.list.map((e,i) => {
+        return <img src={e.sprites.front_default} key={i}/>
+      })
+  return (
+    <div className="App">
+    {pokemonList}
+    </div>
+  );
+}
+}
+
+export default App;
