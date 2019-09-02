@@ -30,7 +30,6 @@ class App extends Component {
     }
     Promise.all(pokeData)
       .then((response) => {
-
         this.setState({
           dataLoop: response.map((e, i) => {
             console.log(e.data)
